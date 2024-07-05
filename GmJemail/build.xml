@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<project name="GM EMAIL" default="all" basedir="..">
+
+  <property name="install.drive"  value="/l/gmqa/cron/gmJemail"/>
+  <property name="src.home"  value="${install.drive}/WEB-INF/classes"/>
+  <property name="build.home"   value="${install.drive}/WEB-INF/classes"/>
+  <property name="servlet.jar"     value="${install.drive}/WEB-INF/lib/servlet.jar"/>
+  <property name="estore.jars" value="${install.drive}/WEB-INF/lib/classes12.jar:${install.drive}/WEB-INF/lib/mail.jar:${install.drive}/WEB-INF/lib/log4j.jar:${install.drive}/WEB-INF/lib/activation.jar:${install.drive}/WEB-INF/lib/commons-lang-2.0.jar:${install.drive}/WEB-INF/lib/commons-email-1.0.jar:${install.drive}/WEB-INF/lib/imap.jar:${install.drive}/WEB-INF/lib/pop3.jar:${install.drive}/WEB-INF/lib/smtp.jar:${install.drive}/WEB-INF/lib/mailapi.jar:${install.drive}/WEB-INF/lib/Tidy.jar"/>
+  <property name="javac.classpath" value="${build.home};${servlet.jar};${estore.jars}"/>
+
+  <target name="all" depends="clean,compile"/>
+    <!-- 
+       ========================================================================
+         Help on usage. List available targets
+       ========================================================================
+    -->
+    <target name="usage">
+
+        <echo message=""/>
+        <echo message="${project.fullname} build file"/>
+        <echo message="------------------------------------------------------"/>
+        <echo message=""/>
+        <echo message=" Available targets are :"/>
+        <echo message=""/>
+        <echo message=" compile --> compiles all estore classes"/>
+        <echo message=""/>
+        <echo message=" test    --> tests all estore classes"/>
+        <echo message=""/>
+
+    </target>
+
+  <target name="test">
+
+    <!-- compile testcode -->
+    <javac srcdir="${src.home}" destdir="${build.home}"
+           classpath="${javac.classpath};"/>
+					 
+    <junit printsummary="yes" haltonfailure="yes" dir="${install.drive}\jdk\jre\bin" fork="yes">
+
+      <classpath>
+        <pathelement location="${build.home}" />
+        <pathelement path="${java.class.path}" />
+      </classpath>
+
+      <formatter type="plain" />
+ 
+      <batchtest fork="yes">
+        <fileset dir="${build.home}">
+          <include name="**/test/**" />
+		<exclude name="**/BaseTestCase.class" />
+		<exclude name="**/TestConnection.class" />
+		<exclude name="javax/**" /> 
+	  </fileset>
+      </batchtest>
+    </junit>
+  </target>
+	
+  <!-- BUILD:  Compile library directory components -->
+  <target name="compile" >
+        <property name="build.compiler" value="modern"/>
+            <javac srcdir="${src.home}" destdir="${build.home}" optimize="on" 
+           classpath="${javac.classpath}" excludes="javax/**,oracle/**,org/**"/>
+  </target>
+	
+	  <!-- UTILITY:  Clean up build and distribution directories -->
+  <target name="clean">
+    <delete>
+      <fileset dir="${build.home}" includes="**/*.class" excludes="javax/**,oracle/**,org/**"/>
+    </delete>
+  </target>
+
+</project>
+ 

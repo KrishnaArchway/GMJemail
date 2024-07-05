@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="lib" path="WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/classes12.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/commons-email-1.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/commons-lang-2.0.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/imap.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/mailapi.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/pop3.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/servlet.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/smtp.jar"/>
+	<classpathentry kind="lib" path="WEB-INF/lib/Tidy.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
